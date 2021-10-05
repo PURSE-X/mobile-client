@@ -2,8 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import UnAuth from './unauth/unauth';
-// import { SafeAreaProvider } from 'react-native-safe-area-context';
-// 
+import store from './redux/store';
+import { Provider } from 'react-redux';
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -13,7 +13,10 @@ class App extends React.Component {
   }
   render() {
     return (
-      <UnAuth />
+      <Provider store={store}>
+        <UnAuth />
+      </Provider>
+
     );
   }
 }
