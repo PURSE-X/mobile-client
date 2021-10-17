@@ -6,13 +6,12 @@ const App = () => {
   const window = useWindowDimensions();
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.logo}>
-                {"><"}
-            </TouchableOpacity>
-              <View>
+            
+              <View style={styles.amountDisplay}>
                 <TouchableOpacity style={styles.icon}>
                     {"$"}
                 </TouchableOpacity>
+                <Text style={styles.amountDisplay}>4206.90</Text>
               </View>
             <TouchableOpacity style={styles.button}>
                 {"exchange"}
@@ -54,6 +53,17 @@ const App = () => {
                     {"0"}
                 </TouchableOpacity>
               </View>
+              <View style={styles.keypad}>
+              <TouchableOpacity style={styles.circle}>
+                  {"$"}
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.logo}>
+                 {"><"}
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.circle}>
+                 {""}
+              </TouchableOpacity>
+              </View>
         </View>
     )
 }
@@ -85,7 +95,20 @@ const styles = StyleSheet.create({
              flexDirection:'row',
              justifyContent: 'space-around',
              
-            }        
+            },
+    amountDisplay:{flexDirection:'row',
+                   fontSize:'200%',
+                   color:'#ffffff'},
+    circle:{width:50,
+            height: 50,
+            borderRadius: 150/2,
+            backgroundColor:'black',
+            color:'white',
+            borderColor:'white',
+            borderWidth: 1,
+            marginTop: 23,
+            textAlign:'center',
+            fontSize:'255%'}                   
 
 });
 
