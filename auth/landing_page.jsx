@@ -9,9 +9,11 @@ const App = () => {
             <TouchableOpacity style={styles.logo}>
                 {"><"}
             </TouchableOpacity>
-            <TouchableOpacity style={styles.icon}>
-                {"$"}
-            </TouchableOpacity>
+              <View>
+                <TouchableOpacity style={styles.icon}>
+                    {"$"}
+                </TouchableOpacity>
+              </View>
             <TouchableOpacity style={styles.button}>
                 {"exchange"}
             </TouchableOpacity>
@@ -76,11 +78,13 @@ const styles = StyleSheet.create({
             },
     button: {color: '#FF8F1C',
              //flex: '0.5',
-             textAlign: 'center'
+             textAlign: 'center',
+             marginBottom: 10,
             },
     keypad: {padding:'5%',
              flexDirection:'row',
-             //align:'center'
+             justifyContent: 'space-around',
+             
             }        
 
 });
