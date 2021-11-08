@@ -1,0 +1,13 @@
+
+
+      <!--Include to allow subdomains-->
+      <key></key>
+      <true/>
+      <!--Include to allow HTTP requests-->
+      <key></key>
+      <true/>
+      <!--Include to specify minimum TLS version-->
+      <key></key>
+      <string></string>
+    </dict>
+

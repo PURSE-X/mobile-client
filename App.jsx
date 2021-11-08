@@ -1,9 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import UnAuth from './unauth/unauth';
 import store from './redux/store';
+import Application from './Application';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react'
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -11,25 +10,19 @@ class App extends React.Component {
       screen: 0
     }
   }
+
+
   render() {
+    const storeInstance = store()
+    const { st, persistedStore } = storeInstance;
     return (
-      <Provider store={store}>
-        <UnAuth />
+      <Provider store={st}>
+        <PersistGate loading={null} persistor={persistedStore}>
+          <Application />
+        </PersistGate>
       </Provider>
 
     );
   }
 }
 export default App;
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    color: "#fff",
-    backgroundColor: '#000',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  font: {
-    color: "#fff"
-  }
-});

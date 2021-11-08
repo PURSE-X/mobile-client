@@ -2,7 +2,8 @@ import React from "react";
 import { TouchableWithoutFeedback } from "react-native";
 import { View, KeyboardAvoidingView, Text, StyleSheet, Keyboard, Image, Button, Touchable, TouchableOpacity, TextInput as Input } from 'react-native';
 // import { Input } from 'react-native-elements';
-
+import { connect } from 'react-redux';
+import { login } from '../redux/actions/auth';
 class SignIn extends React.Component {
     constructor(props) {
         super(props);
@@ -10,7 +11,11 @@ class SignIn extends React.Component {
             textDisplayed: "",
             index: 0,
             timeElapsed: 0,
-            blink: true
+            blink: true,
+            user: {
+                password: "",
+                email: "",
+            }
         }
     }
     componentDidMount() {
@@ -58,8 +63,9 @@ class SignIn extends React.Component {
                             textContentType="emailAddress"
                             style={styles.input}
                             value={this.state.name}
+
                             placeholderTextColor="#A1A1A1"
-                            onChangeText={e => this.setState(state => ({ ...state, user: { ...state.user, name: e } }))}
+                            onChangeText={e => this.setState(state => ({ ...state, user: { ...state.user, email: e } }))}
                         />
                             <TouchableOpacity onPress={() => {
                                 this.setState((e) => ({
@@ -95,32 +101,18 @@ class SignIn extends React.Component {
                                         style={styles.input}
                                         value={this.state.name}
                                         placeholderTextColor="#A1A1A1"
-                                        onChangeText={e => this.setState(state => ({ ...state, user: { ...state.user, name: e } }))}
+                                        onChangeText={e => this.setState(state => ({ ...state, user: { ...state.user, password: e } }))}
                                     />
                                     <TouchableOpacity onPress={() => {
                                         this.setState((e) => ({
                                             index: 4,
                                             textDisplayed: ""
                                         }));
+                                        this.props.login(this.state.user)
                                         let text = "";
-                                        let fullText = message[2];
-                                        console.log(fullText)
-                                        let firstInterval = setInterval(() => {
-                                            this.setState((state) => {
-                                                if (text.length !== fullText.length) {
-                                                    text = text + fullText[text.length]
-                                                    return {
-                                                        ...state, textDisplayed: text
-                                                    }
-                                                }
-                                                else {
-                                                    clearInterval(firstInterval)
-                                                    return {
-                                                        ...state, index: 5, timeElapsed: 0
-                                                    }
-                                                }
-                                            })
-                                        }, 30)
+                                        // let fullText = message[2];
+                                        // console.log(fullText)
+                                        
                                     }}><View style={styles.button}><Text style={styles.font}>Continue</Text></View></TouchableOpacity>
                                 </View>
                                 : null}
@@ -137,7 +129,7 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         maxWidth: "100%",
-        
+
     },
     input: {
         color: 'white',
@@ -197,5 +189,12 @@ const styles = StyleSheet.create({
         fontSize: 24
     }
 });
-
-export default SignIn;
+const mapStateToProps = (props) => {
+    return {}
+}
+const mapDispatchToProps = (dispatch) => {
+    return ({
+        login: (details) => login(dispatch, details)
+    })
+}
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

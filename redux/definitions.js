@@ -4,3 +4,4 @@ export const ADD_ALERT = "ADD_ALERT";
 export const REMOVE_ALERT = "REMOVE_ALERT";
 export const LOAD_FRIENDS = "LOAD_FRIENDS";
 export const LOAD_TRANSACTIONS = "LOAD_TRANSACTIONS";
+export const ASSIGN_TOKEN = "ASSIGN_TOKEN";
