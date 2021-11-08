@@ -1,6 +1,8 @@
 import React from "react";
 import { TouchableWithoutFeedback } from "react-native";
 import { View, KeyboardAvoidingView, Text, StyleSheet, Keyboard, Image, Button, Touchable, TouchableOpacity, TextInput as Input } from 'react-native';
+import {connect} from 'react-redux';
+import  {register} from '../redux/actions/auth';
 // import { Input } from 'react-native-elements';
 
 class SignUp extends React.Component {
@@ -10,7 +12,13 @@ class SignUp extends React.Component {
             textDisplayed: "",
             index: 0,
             timeElapsed: 0,
-            blink: true
+            blink: true,
+            user: {
+                name: "",
+                password: "",
+                email: "",
+                confirmPassword: ""
+            }
         }
     }
     componentDidMount() {
@@ -36,7 +44,7 @@ class SignUp extends React.Component {
         }, 70)
     }
     render() {
-        let message = ["May I ask you for your Full Name?", "May I ask you for your email?", "Please set a password. It should be at least 8 digit long, and contain at least one of each of the following: a special character, an Upper Case Alphabet and a lower case alphabet ", "Please confirm your password"]
+        let message = ["May I ask you for your Full Name?", "May I ask you for your email?", "Please set a password", "Please confirm your password"]
 
         return (
 
@@ -95,9 +103,9 @@ class SignUp extends React.Component {
                                         autoCompleteType="email"
                                         placeholder="example@example.com"
                                         style={styles.input}
-                                        value={this.state.name}
+                                        value={this.state.email}
                                         placeholderTextColor="#A1A1A1"
-                                        onChangeText={e => this.setState(state => ({ ...state, user: { ...state.user, name: e } }))}
+                                        onChangeText={e => this.setState(state => ({ ...state, user: { ...state.user, email: e } }))}
                                     />
                                     <TouchableOpacity onPress={() => {
                                         this.setState((e) => ({
@@ -122,7 +130,7 @@ class SignUp extends React.Component {
                                                     }
                                                 }
                                             })
-                                        }, 30)
+                                        }, 70)
                                     }}><View style={styles.button}><Text style={styles.font}>Next</Text></View></TouchableOpacity>
                                 </View>
                                 : this.state.index === 5 ?
@@ -131,9 +139,9 @@ class SignUp extends React.Component {
                                             secureTextEntry={true}
                                             placeholder="1 Really strong password!"
                                             style={styles.input}
-                                            value={this.state.name}
+                                            value={this.state.password}
                                             placeholderTextColor="#A1A1A1"
-                                            onChangeText={e => this.setState(state => ({ ...state, user: { ...state.user, name: e } }))}
+                                            onChangeText={e => this.setState(state => ({ ...state, user: { ...state.user, password: e } }))}
                                         />
                                         <TouchableOpacity onPress={() => {
                                             this.setState((e) => ({
@@ -164,11 +172,12 @@ class SignUp extends React.Component {
                                         <View style={styles.inputView}>
                                             <Input
                                                 secureTextEntry={true}
-                                                placeholder="John Doe"
+                                                placeholder="Confirm your password"
                                                 style={styles.input}
-                                                value={this.state.name}
+                                                value={this.state.confirmPassword}
+                                                name="confirmPassword"
                                                 placeholderTextColor="#A1A1A1"
-                                                onChangeText={e => this.setState(state => ({ ...state, user: { ...state.user, name: e } }))}
+                                                onChangeText={e => this.setState(state => ({ ...state, user: { ...state.user, confirmPassword: e } }))}
                                             />
                                             <TouchableOpacity onPress={() => {
                                                 this.setState((e) => ({
@@ -176,24 +185,25 @@ class SignUp extends React.Component {
                                                     textDisplayed: ""
                                                 }));
                                                 let text = "";
-                                                let fullText = message[1];
-                                                console.log(fullText)
-                                                let firstInterval = setInterval(() => {
-                                                    this.setState((state) => {
-                                                        if (text.length !== fullText.length) {
-                                                            text = text + fullText[text.length]
-                                                            return {
-                                                                ...state, textDisplayed: text
-                                                            }
-                                                        }
-                                                        else {
-                                                            clearInterval(firstInterval)
-                                                            return {
-                                                                ...state, index: 3, timeElapsed: 0
-                                                            }
-                                                        }
-                                                    })
-                                                }, 70)
+                                                this.props.register(this.state)
+                                                // let fullText = message[1];
+                                                // console.log(fullText)
+                                                // let firstInterval = setInterval(() => {
+                                                //     this.setState((state) => {
+                                                //         if (text.length !== fullText.length) {
+                                                //             text = text + fullText[text.length]
+                                                //             return {
+                                                //                 ...state, textDisplayed: text
+                                                //             }
+                                                //         }
+                                                //         else {
+                                                //             clearInterval(firstInterval)
+                                                //             return {
+                                                //                 ...state, index: 3, timeElapsed: 0
+                                                //             }
+                                                //         }
+                                                //     })
+                                                // }, 70)
                                             }}><View style={styles.button}><Text style={styles.font}>Continue</Text></View></TouchableOpacity>
                                         </View> : null}
                     </View>
@@ -209,7 +219,7 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         maxWidth: "100%",
-        
+
     },
     input: {
         color: 'white',
@@ -269,5 +279,14 @@ const styles = StyleSheet.create({
         fontSize: 24
     }
 });
+const mapStateToProps = (state)=>{
+    return({
 
-export default SignUp;
+    })
+}
+const mapDispatchToProps = (dispatch) =>{
+    return({
+        register: (details) => register(dispatch, details.user)
+    })
+}
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
