@@ -25,9 +25,7 @@ const Landing_page = () => {
           <Number_pad setState={setState}/>
         </View>
 
-        <View>
-          <Navigation_menu />
-        </View>
+       
 
       </View>
     );
