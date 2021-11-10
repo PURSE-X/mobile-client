@@ -1,9 +1,10 @@
 import axios from 'axios';
 import {
     ASSIGN_TOKEN,
-    LOAD_USER
+    LOAD_USER,
+    REMOVE_USER
 } from '../definitions';
-const proxy = "https://505d-171-61-10-135.ngrok.io"
+export const proxy = "https://505d-171-61-10-135.ngrok.io"
 
 
 export const set_header = async (token) => {
@@ -18,7 +19,7 @@ export const set_header = async (token) => {
 }
 export const load_user = async (dispatch) => {
     try {
-        const request = await axios.get(proxy+"/api/users/info");
+        const request = await axios.get(proxy + "/api/users/info");
         dispatch({
             type: LOAD_USER,
             payload: {
@@ -35,7 +36,7 @@ export const login = async (dispatch, details) => {
             email,
             password
         } = details;
-        const request = await axios.post(proxy+'/api/users/sign-in', {
+        const request = await axios.post(proxy + '/api/users/sign-in', {
             email,
             password
         })
@@ -57,7 +58,7 @@ export const register = async (dispatch, details) => {
             email,
             password
         } = details;
-        const request = await axios.post(proxy+'/api/users/sign-up', {
+        const request = await axios.post(proxy + '/api/users/sign-up', {
             name,
             email,
             password
@@ -72,4 +73,9 @@ export const register = async (dispatch, details) => {
     } catch (err) {
         console.log(err)
     }
+}
+export const SignOut = (dispatch) => {
+    dispatch({
+        type: REMOVE_USER
+    })
 }

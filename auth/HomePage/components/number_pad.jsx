@@ -4,11 +4,21 @@ import Styles from './style.jsx';
 import backSpace from '../../../assets/backspace.png'
 function Number_pad(props) {
   const onClick = (value, e) => {
+    if (props.other) {
+      props.setState(value)
+    }
+    else {
+      props.setState(state => (state + (value !== '.' ? value : state.includes(value) ? '' : value)))
 
-    props.setState(state => (state + (value !== '.' ? value : state.includes(value) ? '' : value)))
+    }
   }
   const onDelete = (e) => {
-    props.setState(state => (state.slice(0, state.length - 1)));
+    if (props.other) {
+      props.delete()
+    }
+    else {
+      props.setState(state => (state.slice(0, state.length - 1)));
+    }
   }
   return (
     <View>

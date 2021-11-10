@@ -10,7 +10,9 @@ const Styles = StyleSheet.create({
                 alignItems: 'center',
                 backgroundColor: '#000000',
                 color: '#fff',
+                width: "100%",
                 flex: 1,
+                height: height - 100,
                 padding: 2
         },
         navigationText: {
@@ -24,7 +26,8 @@ const Styles = StyleSheet.create({
         },
         keypadIconsText: {
                 color: "#fff",
-                fontSize: 64
+                textAlign: 'left',
+                fontSize: 50
         },
         logo: {
                 color: '#ffffff',
@@ -55,10 +58,11 @@ const Styles = StyleSheet.create({
         },
         keypad: {
                 padding: 12,
-                width: width - 24,
+                width: width - 58,
                 paddingBottom: "2%",
                 flexDirection: 'row',
-                justifyContent: 'space-around',
+
+                justifyContent: 'space-between',
 
         },
         amountDisplay: {
@@ -71,7 +75,7 @@ const Styles = StyleSheet.create({
                 color: "#fff"
         },
         circle: {
-                minWidth: 60,
+                width: 60,
                 height: 60,
                 borderRadius: 150 / 2,
                 backgroundColor: 'black',
@@ -85,11 +89,11 @@ const Styles = StyleSheet.create({
         },
         navigationLogo: {
 
-                height: 60,
-                width: 60
+                height: 50,
+                width: 50
         },
         keypadIcons: {
-                borderColor:'#fff',
+                borderColor: '#fff',
                 width: 45,
                 justifyContent: "center",
                 alignItems: 'center'
