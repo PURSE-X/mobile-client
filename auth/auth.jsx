@@ -4,6 +4,7 @@ import { ScrollView as View, Text, StyleSheet } from 'react-native';
 import Home from './HomePage/AuthHome';
 import NavigationMenu from './HomePage/components/navigation_menu'
 import Profile from './HomePage/Profile';
+import QrPage from "./HomePage/QrPage";
 class Auth extends React.Component {
     constructor(props) {
         super(props);
@@ -29,7 +30,7 @@ class Auth extends React.Component {
             return <View style={{ backgroundColor: "#000", flex: 1 }}><Profile /><NavigationMenu setScreen={this.setScreen} /></View>
         }
         else if (this.state.screen === 2) {
-            return <Home />
+            return <QrPage />
         }
         else if (this.state.screen === 3) {
             return <Home />

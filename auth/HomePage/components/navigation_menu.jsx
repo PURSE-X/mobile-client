@@ -21,7 +21,9 @@ class Nav extends React.Component {
           <Image source={dollarIcon} />
         </TouchableOpacity>
 
-        <TouchableOpacity style={{ ...Styles.circle, ...Styles.navigationBorder, borderWidth: 0 }}>
+        <TouchableOpacity onPress={() => {
+          this.setScreen(2)
+        }}  style={{ ...Styles.circle, ...Styles.navigationBorder, borderWidth: 0 }}>
           <Text style={Styles.navigationText}>{"><"}</Text>
 
         </TouchableOpacity>
