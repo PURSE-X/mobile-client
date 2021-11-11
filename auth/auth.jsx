@@ -30,7 +30,7 @@ class Auth extends React.Component {
             return <View style={{ backgroundColor: "#000", flex: 1 }}><Profile /><NavigationMenu setScreen={this.setScreen} /></View>
         }
         else if (this.state.screen === 2) {
-            return <QrPage />
+            return <View style={{ backgroundColor: "#000", flex: 1 }}><QrPage /><NavigationMenu setScreen={this.setScreen} /></View>
         }
         else if (this.state.screen === 3) {
             return <Home />
