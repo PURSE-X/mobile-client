@@ -4,7 +4,7 @@ import {
     LOAD_USER,
     REMOVE_USER
 } from '../definitions';
-export const proxy = "https://505d-171-61-10-135.ngrok.io"
+export const proxy = "https://aa76-171-61-10-135.ngrok.io"
 
 
 export const set_header = async (token) => {
