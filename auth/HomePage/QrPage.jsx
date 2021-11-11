@@ -12,18 +12,17 @@ import {
     ScrollView,
     TouchableOpacity
 } from 'react-native';
+import { connect } from 'react-redux';
+import axios from "axios";
+import Header from "./components/header";
 import Number_pad from "./components/number_pad";
 import { BarCodeScanner } from 'expo-barcode-scanner';
-
 import { proxy, SignOut, load_user } from "../../redux/actions/auth";
 import InputArea from './components/inputArea';
 import Styles from './components/style';
 import QRCode from 'react-native-qrcode-svg';
 import logo from '../../assets/PurseX.png';
 
-
-import { connect } from 'react-redux';
-import axios from "axios";
 
 class Profile extends React.Component {
     componentDidMount = () => {
@@ -95,9 +94,7 @@ class Profile extends React.Component {
             ...Styles.container, justifyContent: 'space-evenly', alignItems: 'center'
         }}>
             <StatusBar hidden />
-            <View style={{ width: '100%', position: "absolute", top: 0, zIndex: 5, justifyContent: 'center', alignItems: "center", backgroundColor: "#222222", height: 70 }}>
-                <Text style={{ color: "#fff", fontSize: 30 }}>QR Code</Text>
-            </View>
+            <Header>QR Code</Header>
             <Modal transparent={true} visible={this.state.open} animationType='slide' >
                 <View style={PageStyles.modalContainer}>
                     <TouchableOpacity style={PageStyles.modalOut} onPress={() => {
@@ -228,12 +225,13 @@ const PageStyles = StyleSheet.create({
     modalButton: {
         backgroundColor: "#73AC3B",
         padding: 20,
+        marginTop:30,
         // width: 100,
         borderRadius: 30,
         marginBottom: 32
     },
     modalOut: {
-        height: '15%',
+        height: Dimensions.get('window').width < 370 ? "5%" : '15%',
         // backgroundColor: '#00000080',
         width: '100%'
     },
@@ -241,7 +239,7 @@ const PageStyles = StyleSheet.create({
         alignItems: 'center',
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
-        height: "85%",
+        height: Dimensions.get('window').width < 370 ? "95%" : "85%",
         justifyContent: 'space-between',
         backgroundColor: "#292929",
         width: "100%"
