@@ -97,10 +97,10 @@ class Profile extends React.Component {
             </Modal>
             <ScrollView style={{ width: '100%', height: '100%' }} contentContainerStyle={{ justifyContent: 'flex-start', alignItems: 'center' }} >
                 <View style={{ width: "90%", borderRadius: 20, flexDirection: 'row', padding: 20, backgroundColor: "#202020", alignItems: 'center', marginTop: 100, justifyContent: 'space-between' }}>
-                    <Image style={{ width: 80, height: 80, borderRadius: "100%" }} source={{ uri: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" }}></Image>
+                    <Image style={{ width: 80, height: 80, borderRadius: 80/2 }} source={{ uri: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" }}></Image>
                     <Text style={{ color: "#fff", fontSize: 25 }}>{this.props.user.name}</Text>
                 </View>
-                <View style={{ borderRadius: 20, width: "90%", padding: 20, backgroundColor: "#202020", alignItems: 'start', marginTop: 50, justifyContent: 'space-between' }}>
+                <View style={{ borderRadius: 20, width: "90%", padding: 20, backgroundColor: "#202020", alignItems: 'flex-start', marginTop: 50, justifyContent: 'space-between' }}>
                     <View style={{ width: '100%', borderBottomWidth: 2, paddingBottom: 12 }}>
                         <Text style={{ color: "#fff", fontSize: 24 }}>Balance</Text>
                     </View>
@@ -110,7 +110,7 @@ class Profile extends React.Component {
                         </Text>
                     </View>
                     <View style={{ width: '100%', borderRadius: 10, justifyContent: 'center', alignItems: 'center' }}>
-                        <TouchableOpacity onPress={this.addFunds} style={{ width: 70, height: 70, borderRadius: '100%', marginTop: 30, backgroundColor: '#73AC3B' }}>
+                        <TouchableOpacity onPress={this.addFunds} style={{ width: 70, height: 70, borderRadius: 70/2, marginTop: 30, backgroundColor: '#73AC3B', justifyContent:'center', alignItems:'center' }}>
                             <Text style={{ color: "#fff", fontSize: 64, textAlign: 'center' }}>+</Text>
                         </TouchableOpacity>
                     </View>
