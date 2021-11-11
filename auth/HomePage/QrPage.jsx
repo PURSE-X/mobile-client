@@ -35,7 +35,7 @@ class Profile extends React.Component {
         this.state = {
             open: false,
             receiver: null,
-            amount: 0,
+            amount: "",
             cameraPermission: false
         };
         (async () => {
@@ -66,18 +66,37 @@ class Profile extends React.Component {
     async componentDidMount() {
 
     }
-    handleBarCodeScanned = ({ type, data }) => {
+    getUserData = async (id) => {
+        try {
+            const request = await axios.get(`${proxy}/api/users/user-info/${id}`)
+
+            this.setState(state => ({ ...state, receiver: request.data.msg }));
+
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+    handleBarCodeScanned = async ({ type, data }) => {
         console.log(data);
-        this.setState(state => ({ ...state, receiver: data }));
-        // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+        await this.getUserData(data);
     };
+    sendFunds = async () => {
+        try {
+            const request = await axios.post(`${proxy}/api/transfer/send`, { amount: Math.ceil(Number(this.state.amount)), to: this.state.receiver._id })
+            this.setState(state => ({ ...state, receiver: null }))
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
     render() {
         return (<View style={{
             ...Styles.container, justifyContent: 'space-evenly', alignItems: 'center'
         }}>
             <StatusBar hidden />
             <View style={{ width: '100%', position: "absolute", top: 0, zIndex: 5, justifyContent: 'center', alignItems: "center", backgroundColor: "#222222", height: 70 }}>
-                <Text style={{ color: "#fff", fontSize: 30 }}>Profile</Text>
+                <Text style={{ color: "#fff", fontSize: 30 }}>QR Code</Text>
             </View>
             <Modal transparent={true} visible={this.state.open} animationType='slide' >
                 <View style={PageStyles.modalContainer}>
@@ -92,18 +111,32 @@ class Profile extends React.Component {
                     </TouchableOpacity>
                     <View style={PageStyles.modalStyle}>
 
-                        <View style={PageStyles.modalHeader}>
+                        {!this.state.receiver ? <View style={PageStyles.modalHeader}>
                             <Text style={PageStyles.modalHeaderTitle}>Scan QR Code</Text>
-                        </View>
+                        </View> : <View style={{ width: '100%', paddingHorizontal: 60, position: "absolute", top: 0, zIndex: 5, justifyContent: 'space-between', alignItems: "center", flexDirection: 'row', backgroundColor: "#222222", height: 70, borderTopRightRadius: 20, borderTopLeftRadius: 20 }}>
+                            <Text style={{ color: "#fff", fontSize: 30 }}>Pay {this.state.receiver.name}</Text>
+                            <Image style={{ width: 30, height: 30, borderRadius: 30 / 2 }} source={{ uri: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" }}></Image>
 
-                        {this.state.cameraPermission ? !this.state.receiver ?<><View><BarCodeScanner
+                        </View>}
+
+                        {this.state.cameraPermission ? !this.state.receiver ? <><View><BarCodeScanner
                             onBarCodeScanned={this.handleBarCodeScanned}
                             style={{
                                 height: Dimensions.get('window').width * 0.8,
                                 width: Dimensions.get('window').width * 0.8
                             }}
-                        /></View><View /></> : <View>
-                            <Text>User Profile(I am making this part rn)</Text>
+                        /></View><View /></> : <View style={{ alignItems: 'center' }}>
+                            <InputArea styles={{ marginTop: 80 }} state={this.state.amount.length === 0 ? "0" : this.state.amount} />
+                            <View styles={{ height: 300 }} >
+                                <Number_pad other={true} setState={(value) => {
+                                    this.setState(state => ({ ...state, amount: (state.amount + (value !== '.' ? value : state.amount.includes(value) ? '' : value)) }))
+                                }} delete={() => {
+                                    this.setState(state => ({ ...state, amount: state.amount.slice(0, state.amount.length - 1) }));
+
+                                }} />
+                            </View>
+                            <TouchableOpacity onPress={this.sendFunds} style={{ ...PageStyles.modalButton, width: '30%', marginTop: 15, borderRadius: 15 }}><Text style={PageStyles.modalButtonTitle}>PAY</Text></TouchableOpacity>
+
                         </View> : <Text>We can't help you scan QR codes, if you don't enable the camera</Text>}
 
 
@@ -159,7 +192,9 @@ const PageStyles = StyleSheet.create({
         textAlign: 'center'
     },
     qrNavigationButtons: {
-        borderRadius: 15,
+        borderRadius: 20,
+        marginTop: 30,
+        padding: 15,
         backgroundColor: '#0164A3',
         width: Dimensions.get('window').width * .6,
 
