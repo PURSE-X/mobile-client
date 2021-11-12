@@ -1,9 +1,10 @@
 import React from "react";
 
-import { ScrollView as View, Text, StyleSheet } from 'react-native';
+import { ScrollView as View, Text, StyleSheet, SafeAreaView } from 'react-native';
 import Home from './HomePage/AuthHome';
 import NavigationMenu from './HomePage/components/navigation_menu'
 import Profile from './HomePage/Profile';
+import Transaction from './HomePage/TransactionLog';
 import QrPage from "./HomePage/QrPage";
 class Auth extends React.Component {
     constructor(props) {
@@ -33,7 +34,8 @@ class Auth extends React.Component {
             return <View style={{ backgroundColor: "#000", flex: 1 }}><QrPage /><NavigationMenu setScreen={this.setScreen} /></View>
         }
         else if (this.state.screen === 3) {
-            return <Home />
+           return <SafeAreaView style={{ backgroundColor: "#000", flex: 1 }}><Transaction/><NavigationMenu setScreen={this.setScreen} /></SafeAreaView>
+
         }
         else {
             return <Home />
