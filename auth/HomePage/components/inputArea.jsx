@@ -14,14 +14,14 @@ const InputArea = (props) => {
 }
 const styles = StyleSheet.create({
     container: {
-        marginTop: 54,
+        marginTop: Dimensions.get('window').width < 370 ? 10 : 54,
         width: Dimensions.get('window').width - 24,
-        paddingVertical: 12,
-        paddingHorizontal: 32
+        paddingVertical: Dimensions.get('window').width < 370 ? 2 : 12,
+        paddingHorizontal: Dimensions.get('window').width < 370 ? 10 : 32
         // backgroundColor:"#fff"        
     },
     text: {
-        fontSize: 64,
+        fontSize: Dimensions.get('window').width < 370 ? 52 : 64,
         color: "#fff",
 
     }

@@ -54,12 +54,13 @@ const Styles = StyleSheet.create({
                 color: '#FF8F1C',
                 //flex: '0.5',
                 textAlign: 'center',
-                marginBottom: 10,
+                marginBottom: Dimensions.get('window').width < 370 ? 3 : 10,
         },
         keypad: {
-                padding: 12,
+                padding: Dimensions.get('window').width < 370 ? 10 : 12,
                 width: width - 58,
-                paddingBottom: "2%",
+                paddingBottom: Dimensions.get('window').width < 370 ? 0 : "2%",
+
                 flexDirection: 'row',
 
                 justifyContent: 'space-between',
@@ -67,11 +68,11 @@ const Styles = StyleSheet.create({
         },
         amountDisplay: {
                 flexDirection: 'row',
-                fontSize: 16,
+                fontSize: Dimensions.get('window').width < 370 ? 10 : 16,
                 color: '#ffffff'
         },
         buttonExchange: {
-                fontSize: 32,
+                fontSize: Dimensions.get('window').width < 370 ? 20 : 32,
                 color: "#fff"
         },
         circle: {

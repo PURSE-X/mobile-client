@@ -12,6 +12,7 @@ import {
     ScrollView,
     TouchableOpacity
 } from 'react-native';
+import Header from "./components/header";
 import Number_pad from "./components/number_pad";
 import { proxy, SignOut, load_user } from "../../redux/actions/auth";
 import InputArea from './components/inputArea';
@@ -22,10 +23,10 @@ import { connect } from 'react-redux';
 import axios from "axios";
 
 class Profile extends React.Component {
-    componentDidMount = () =>{
+    componentDidMount = () => {
         this.props.load_user()
     }
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -43,7 +44,7 @@ class Profile extends React.Component {
                 amount: Math.ceil(Number(this.state.funds.amount))
             })
             Linking.openURL(request.data.url);
-            
+
         }
         catch (err) {
             console.log(err);
@@ -62,9 +63,7 @@ class Profile extends React.Component {
             ...Styles.container, justifyContent: 'flex-start', alignItems: 'center'
         }}>
             <StatusBar hidden />
-            <View style={{ width: '100%', position: "absolute", top: 0, zIndex: 5, justifyContent: 'center', alignItems: "center", backgroundColor: "#222222", height: 70 }}>
-                <Text style={{ color: "#fff", fontSize: 30 }}>Profile</Text>
-            </View>
+            <Header>Profile</Header>
             <Modal transparent={true} visible={this.state.funds.opened} animationType='slide' >
                 <View style={PageStyles.modalContainer}>
                     <TouchableOpacity style={PageStyles.modalOut} onPress={() => {
@@ -97,7 +96,7 @@ class Profile extends React.Component {
             </Modal>
             <ScrollView style={{ width: '100%', height: '100%' }} contentContainerStyle={{ justifyContent: 'flex-start', alignItems: 'center' }} >
                 <View style={{ width: "90%", borderRadius: 20, flexDirection: 'row', padding: 20, backgroundColor: "#202020", alignItems: 'center', marginTop: 100, justifyContent: 'space-between' }}>
-                    <Image style={{ width: 80, height: 80, borderRadius: 80/2 }} source={{ uri: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" }}></Image>
+                    <Image style={{ width: 80, height: 80, borderRadius: 80 / 2 }} source={{ uri: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" }}></Image>
                     <Text style={{ color: "#fff", fontSize: 25 }}>{this.props.user.name}</Text>
                 </View>
                 <View style={{ borderRadius: 20, width: "90%", padding: 20, backgroundColor: "#202020", alignItems: 'flex-start', marginTop: 50, justifyContent: 'space-between' }}>
@@ -110,7 +109,7 @@ class Profile extends React.Component {
                         </Text>
                     </View>
                     <View style={{ width: '100%', borderRadius: 10, justifyContent: 'center', alignItems: 'center' }}>
-                        <TouchableOpacity onPress={this.addFunds} style={{ width: 70, height: 70, borderRadius: 70/2, marginTop: 30, backgroundColor: '#73AC3B', justifyContent:'center', alignItems:'center' }}>
+                        <TouchableOpacity onPress={this.addFunds} style={{ width: 70, height: 70, borderRadius: 70 / 2, marginTop: 30, backgroundColor: '#73AC3B', justifyContent: 'center', alignItems: 'center' }}>
                             <Text style={{ color: "#fff", fontSize: 64, textAlign: 'center' }}>+</Text>
                         </TouchableOpacity>
                     </View>
@@ -128,7 +127,7 @@ class Profile extends React.Component {
                 </View>
 
             </ScrollView>
-        </View>
+        </View >
         );
     }
 
@@ -175,12 +174,13 @@ const PageStyles = StyleSheet.create({
     modalButton: {
         backgroundColor: "#73AC3B",
         padding: 20,
+        marginTop:30,
         // width: 100,
         borderRadius: 30,
         marginBottom: 32
     },
     modalOut: {
-        height: '15%',
+        height: Dimensions.get('window').width < 370 ? "5%" : '10%',
         // backgroundColor: '#00000080',
         width: '100%'
     },
@@ -188,7 +188,7 @@ const PageStyles = StyleSheet.create({
         alignItems: 'center',
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
-        height: "85%",
+        height: Dimensions.get('window').width < 370 ? "95%" : "90%",
         justifyContent: 'space-between',
         backgroundColor: "#292929",
         width: "100%"
