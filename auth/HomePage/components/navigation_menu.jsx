@@ -23,7 +23,7 @@ class Nav extends React.Component {
 
         <TouchableOpacity onPress={() => {
           this.setScreen(2)
-        }}  style={{ ...Styles.circle, ...Styles.navigationBorder, borderWidth: 0 }}>
+        }} style={{ ...Styles.circle, ...Styles.navigationBorder, borderWidth: 0 }}>
           <Text style={Styles.navigationText}>{"><"}</Text>
 
         </TouchableOpacity>
@@ -32,7 +32,9 @@ class Nav extends React.Component {
         }} style={{ ...Styles.circle, ...Styles.navigationBorder, borderWidth: 0 }}>
           <Image style={Styles.navigationLogo} source={PurseXLogo}></Image>
         </TouchableOpacity>
-        <TouchableOpacity style={{ ...Styles.circle, ...Styles.navigationBorder, borderWidth: 0, }}>
+        <TouchableOpacity onPress={() => {
+          this.setScreen(3)
+        }} style={{ ...Styles.circle, ...Styles.navigationBorder, borderWidth: 0, }}>
           <Image source={snakeIcon} style={Styles.navigationSnake} />
         </TouchableOpacity>
 

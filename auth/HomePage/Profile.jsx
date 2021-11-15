@@ -109,11 +109,10 @@ class Profile extends React.Component {
                         </Text>
                     </View>
                     <View style={{ width: '100%', borderRadius: 10, justifyContent: 'center', alignItems: 'center' }}>
-                        <TouchableOpacity onPress={this.addFunds} style={{ width: 70, height: 70, borderRadius: 70 / 2, marginTop: 30, backgroundColor: '#73AC3B', justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ color: "#fff", fontSize: 64, textAlign: 'center' }}>+</Text>
+                        <TouchableOpacity onPress={this.addFunds} style={{ borderRadius: 40, marginTop: 30, height: 60, width: 60, backgroundColor: '#73AC3B', alignItems: 'center', justifyContent: 'center' }}>
+                            <Text style={{ color: "#fff", fontSize: 54, textAlign: 'center' }}>+</Text>
                         </TouchableOpacity>
                     </View>
-
                 </View>
                 <View style={{ width: "90%", borderRadius: 10, padding: 20, backgroundColor: "#202020", alignItems: 'center', marginTop: 50, flexDirection: 'row', justifyContent: 'center' }}>
                     <TouchableOpacity style={{ padding: 15, backgroundColor: '#0DB681', borderRadius: 10 }}>
@@ -174,7 +173,7 @@ const PageStyles = StyleSheet.create({
     modalButton: {
         backgroundColor: "#73AC3B",
         padding: 20,
-        marginTop:30,
+        marginTop: 30,
         // width: 100,
         borderRadius: 30,
         marginBottom: 32

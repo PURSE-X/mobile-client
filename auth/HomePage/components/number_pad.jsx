@@ -8,8 +8,17 @@ function Number_pad(props) {
       props.setState(value)
     }
     else {
-      props.setState(state => (state + (value !== '.' ? value : state.includes(value) ? '' : value)))
-
+      if (props.state.includes('.') || value === ".") {
+        if(value === '.'){
+          props.setState(state => (state + (value !== '.' ? value : state.includes(value) ? '' : value)))
+        }
+        if ((props.state.length - (props.state.indexOf('.') + 1)) <= 1) {
+          props.setState(state => (state + (value !== '.' ? value : state.includes(value) ? '' : value)))
+        }
+      }
+      if (props.state.length < 6) {
+        props.setState(state => (state + (value !== '.' ? value : state.includes(value) ? '' : value)))
+      }
     }
   }
   const onDelete = (e) => {
@@ -17,6 +26,7 @@ function Number_pad(props) {
       props.delete()
     }
     else {
+
       props.setState(state => (state.slice(0, state.length - 1)));
     }
   }
