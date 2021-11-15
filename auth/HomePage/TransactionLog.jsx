@@ -8,9 +8,11 @@ import {
     StyleSheet,
     SafeAreaView,
     Text,
+    TouchableWithoutFeedback,
     TouchableOpacity,
     FlatList
 } from 'react-native';
+import { v4 as uuid } from 'uuid'
 import { connect } from 'react-redux';
 import axios from "axios";
 import Header from "./components/header";;
@@ -47,12 +49,16 @@ class Profile extends React.Component {
             console.log(err)
         }
     }
+    updating = false;
     loadMore = async () => {
+        this.onEndReachedCalledDuringMomentum = true;
+        updating = true
         try {
+            console.log(this.state.transactions.length)
             const request = await axios.get(`${proxy}/api/transfer/${this.state.transactions.length}/3`)
-            console.log(request.data)
-            let hasMore = request.data.payments.length < 5 ? false : true;
+            let hasMore = request.data.payments.length < 10 ? false : true;
             this.setState(state => ({ ...state, hasMore, transactions: [...state.transactions, ...request.data.payments] }));
+            updating = false
         }
         catch (err) {
 
@@ -61,9 +67,7 @@ class Profile extends React.Component {
 
     render() {
         return (<><StatusBar hidden />
-            <Header>Transactions</Header><SafeAreaView style={{
-                ...Styles.container, justifyContent: 'space-between', alignItems: 'center'
-            }}>
+            <Header>Transactions</Header><View style={{ marginTop: 50, height: Dimensions.get('window').height - 150, flex: 1, flexGrow: 1 }}>
 
                 <Modal transparent={true} visible={this.state.open} animationType='slide' >
                     <View style={PageStyles.modalContainer}>
@@ -84,20 +88,28 @@ class Profile extends React.Component {
 
                     </View>
                 </Modal>
+                {this.state.transactions.length === 0 ? <View style={{ flex: 1, height: Dimensions.get('window').height, width: Dimensions.get('window').width, marginTop: 70, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: 24, color: "#fff" }}>You haven't made any transactions yet</Text></View> : null}
                 <FlatList
                     data={this.state.transactions}
-                    renderItem={(item) => <TransactionComponent {...item} />}
+                    renderItem={(item) => <TouchableWithoutFeedback onPress={() => { }}><TransactionComponent {...item} /></TouchableWithoutFeedback>}
                     keyExtractor={item => item._id}
                     contentContainerStyle={{
-                        flex: 1,
                         flexDirection: 'column',
-                        marginTop: 200,
-                        height: Dimensions.get('window').height - 200,
-                        width: '100%'
+                        marginTop: 70,
+                        alignItems: 'center',
+                        paddingBottom: 150,
+                        width: '100%',
                     }}
-                    onEndReached={this.state.hasMore ? this.loadMore : () => { }}
+                    onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
+                    initialNumToRender={10}
+                    onEndReachedThreshold={1}
+                    onEndReached={this.state.hasMore ? !this.onEndReachedCalledDuringMomentum ? () => {
+                        
+                        this.loadMore();
+
+                    } : false : () => { }}
                 />
-            </SafeAreaView></>
+            </View></>
         );
     }
 
@@ -119,6 +131,7 @@ const PageStyles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         height: "100%",
+        width: '100%',
         margin: 0,
         color: "#00000090",
         backgroundColor: '#00000030'

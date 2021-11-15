@@ -126,7 +126,16 @@ class Profile extends React.Component {
                             <InputArea styles={{ marginTop: 80 }} state={this.state.amount.length === 0 ? "0" : this.state.amount} />
                             <View styles={{ height: 300 }} >
                                 <Number_pad other={true} setState={(value) => {
-                                    this.setState(state => ({ ...state, amount: (state.amount + (value !== '.' ? value : state.amount.includes(value) ? '' : value)) }))
+                                    if (this.state.amount.includes('.') || value === ".") {
+                                        if (value === ".") {
+                                            this.setState(state => ({ ...state, amount: (state.amount + (value !== '.' ? value : state.amount.includes(value) ? '' : value)) }))
+                                        }
+                                        else if ((this.state.amount.length - (this.state.amount.indexOf('.') + 1)) <= 1) {
+                                            this.setState(state => ({ ...state, amount: (state.amount + (value !== '.' ? value : state.amount.includes(value) ? '' : value)) }))
+                                        }
+                                    } else if (this.state.amount.length < 6) {
+                                        this.setState(state => ({ ...state, amount: (state.amount + (value !== '.' ? value : state.amount.includes(value) ? '' : value)) }))
+                                    }
                                 }} delete={() => {
                                     this.setState(state => ({ ...state, amount: state.amount.slice(0, state.amount.length - 1) }));
 
@@ -225,7 +234,7 @@ const PageStyles = StyleSheet.create({
     modalButton: {
         backgroundColor: "#73AC3B",
         padding: 20,
-        marginTop:30,
+        marginTop: 30,
         // width: 100,
         borderRadius: 30,
         marginBottom: 32

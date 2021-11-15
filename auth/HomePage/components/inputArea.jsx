@@ -12,16 +12,18 @@ const InputArea = (props) => {
         <Text style={styles.text}>${props.state}</Text>
     </View>)
 }
+console.log(Dimensions.get('window').width)
 const styles = StyleSheet.create({
     container: {
         marginTop: Dimensions.get('window').width < 370 ? 10 : 54,
         width: Dimensions.get('window').width - 24,
         paddingVertical: Dimensions.get('window').width < 370 ? 2 : 12,
-        paddingHorizontal: Dimensions.get('window').width < 370 ? 10 : 32
+        marginLeft: Dimensions.get('window').width > 370 ? 22 : 0,
+        paddingHorizontal: 10
         // backgroundColor:"#fff"        
     },
     text: {
-        fontSize: Dimensions.get('window').width < 370 ? 52 : 64,
+        fontSize: Dimensions.get('window').width < 370 ? 52 : Dimensions.get('window').width < 375 ? 54 : 60,
         color: "#fff",
 
     }

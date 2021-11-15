@@ -4,7 +4,7 @@ import {
     LOAD_USER,
     REMOVE_USER
 } from '../definitions';
-export const proxy = "https://server-flax-nu.vercel.app"
+export const proxy = "http://1046-122-170-223-124.ngrok.io"
 
 
 export const set_header = async (token) => {
