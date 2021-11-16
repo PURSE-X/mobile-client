@@ -16,6 +16,7 @@ import fourCornerOne from '../assets/fourCornerOne.png'
 import QRdesign from '../assets/QRdesign.png'
 import QRcodeReader from '../assets/QRcodeReader.png'
 import money from '../assets/money.png'
+import PurseXNoBackground from '../assets/PurseXNoBackground.png'
 
 class Nav extends React.Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class Nav extends React.Component {
         <TouchableOpacity onPress={() => {
           this.setScreen(0)
         }} style={{ ...Styles.circle, ...Styles.navigationBorder, borderWidth: 0 }}>
-          <Image style={Styles.navigationLogo} source={PurseXLogo}></Image>
+          <Image style={Styles.navigationLogo} source={PurseXNoBackground}></Image>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => {
           this.setScreen(3)
