@@ -7,15 +7,27 @@ var height = Dimensions.get('window').height;
 
 
 const Styles = StyleSheet.create({
-        container: {
+        backgroundPic: {
                 alignSelf: "stretch",
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                backgroundColor: '#000000',
+                //backgroundColor: '#000000',
                 color: '#fff',
                 width: "100%",
                 flex: 1,
                 height: height - 100,
+                padding: 2
+        },
+        
+        container: {
+                alignSelf: "stretch",
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                //backgroundColor: '#000000',
+                color: '#fff',
+                width: "100%",
+                flex: 1,
+                height: height + 100,
                 padding: 2
         },
         navigationText: {
@@ -80,13 +92,13 @@ const Styles = StyleSheet.create({
                 color: "#fff"
         },
         circle: {
-                width: 60,
-                height: 60,
-                borderRadius: 150 / 2,
-                backgroundColor: 'black',
-                color: 'white',
-                borderColor: 'black',
-                borderWidth: 1,
+                //width: 60,
+                //height: 60,
+                //borderRadius: 150 / 2,
+                //backgroundColor: 'black',
+                //color: 'white',
+                //borderColor: 'black',
+                //borderWidth: 1,
                 marginTop: 23,
                 textAlign: 'center',
                 fontSize: 16,
