@@ -1,8 +1,11 @@
 import React from "react";
-import { StyleSheet } from 'react-native';
-import { Dimensions } from "react-native";
+import { StyleSheet, Dimensions } from 'react-native';
+
 var width = Dimensions.get('window').width;
 var height = Dimensions.get('window').height;
+
+
+
 const Styles = StyleSheet.create({
         container: {
                 alignSelf: "stretch",
@@ -27,7 +30,8 @@ const Styles = StyleSheet.create({
         keypadIconsText: {
                 color: "#fff",
                 textAlign: 'left',
-                fontSize: 50
+                fontSize: 50,
+                //fontFamily: 'AguafinaScript_400Regular',
         },
         logo: {
                 color: '#ffffff',
@@ -81,7 +85,7 @@ const Styles = StyleSheet.create({
                 borderRadius: 150 / 2,
                 backgroundColor: 'black',
                 color: 'white',
-                borderColor: 'white',
+                borderColor: 'black',
                 borderWidth: 1,
                 marginTop: 23,
                 textAlign: 'center',

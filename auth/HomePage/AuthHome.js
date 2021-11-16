@@ -1,5 +1,5 @@
 import React from "react";
-import { useWindowDimensions, View} from 'react-native';
+import { useWindowDimensions, View, Image} from 'react-native';
 import Styles from './components/style';
 import Currency from './components/currency.jsx';
 
@@ -9,12 +9,15 @@ import Number_pad from './components/number_pad.jsx';
 import Exchange from "./components/exchange";
 import InputArea from "./components/inputArea";
 
+import PurseXDesignBlack from './assets/PurseXDesignBlack.png'
+
 const Landing_page = () => {
-  const [State, setState] = React.useState("69420.00")
+  const [State, setState] = React.useState("100.00")
   const [open, setOpen] = React.useState(false);
   const window = useWindowDimensions();
     return (
       <View style = {Styles.container}>
+        
 
       <Exchange setOpen={setOpen} amount={State} open={open}/>
         <InputArea state={State}/>
@@ -25,9 +28,10 @@ const Landing_page = () => {
 
         </View>
 
-      
+        
         <View>
           <Number_pad state={State} setState={setState}/>
+          
         </View>
 
        

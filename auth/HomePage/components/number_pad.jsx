@@ -2,6 +2,7 @@ import React from "react";
 import { View, TouchableOpacity, Text, Image } from "react-native";
 import Styles from './style.jsx';
 import backSpace from '../../../assets/backspace.png'
+
 function Number_pad(props) {
   const onClick = (value, e) => {
     if (props.other) {
