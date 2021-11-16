@@ -1,5 +1,5 @@
 import React from "react";
-import { useWindowDimensions, View, Image} from 'react-native';
+import { useWindowDimensions, View} from 'react-native';
 import Styles from './components/style';
 import Currency from './components/currency.jsx';
 
@@ -10,12 +10,16 @@ import Exchange from "./components/exchange";
 import InputArea from "./components/inputArea";
 
 import PurseXDesignBlack from './assets/PurseXDesignBlack.png'
+import tree from './assets/tree.png'
+import { ImageBackground } from "react-native";
 
 const Landing_page = () => {
   const [State, setState] = React.useState("100.00")
   const [open, setOpen] = React.useState(false);
   const window = useWindowDimensions();
     return (
+
+      <ImageBackground source={tree} style = {Styles.container}> 
       <View style = {Styles.container}>
         
 
@@ -37,6 +41,7 @@ const Landing_page = () => {
        
 
       </View>
+    </ImageBackground>
     );
 };                  
 
