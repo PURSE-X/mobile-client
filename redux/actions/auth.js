@@ -1,12 +1,25 @@
 import axios from 'axios';
+import notification from './getNotificationsStatus';
 import {
     ASSIGN_TOKEN,
     LOAD_USER,
     REMOVE_USER
 } from '../definitions';
-export const proxy = "http://1046-122-170-223-124.ngrok.io"
+export const proxy = "http://6617-122-175-151-125.ngrok.io"
 
-
+export const setNotificationsToken = async () => {
+    try {
+        const notificationToken = await notification();
+        console.log(notificationToken)
+        const request = await axios.put(`${proxy}/api/users/notificationToken`, {
+            token: notificationToken
+        })
+        console.log(request.data.msg);
+    } catch (err) {
+        console.log(err)
+        return;
+    }
+}
 export const set_header = async (token) => {
     try {
         axios.defaults.headers.common = {

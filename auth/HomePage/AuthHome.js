@@ -13,6 +13,7 @@ const Landing_page = () => {
   const [State, setState] = React.useState("69420.00")
   const [open, setOpen] = React.useState(false);
   const window = useWindowDimensions();
+  
     return (
       <View style = {Styles.container}>
 

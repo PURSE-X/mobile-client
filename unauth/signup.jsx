@@ -1,8 +1,8 @@
 import React from "react";
 import { TouchableWithoutFeedback } from "react-native";
 import { View, KeyboardAvoidingView, Text, StyleSheet, Keyboard, Image, Button, Touchable, TouchableOpacity, TextInput as Input } from 'react-native';
-import {connect} from 'react-redux';
-import  {register} from '../redux/actions/auth';
+import { connect } from 'react-redux';
+import { register } from '../redux/actions/auth';
 // import { Input } from 'react-native-elements';
 
 class SignUp extends React.Component {
@@ -21,9 +21,13 @@ class SignUp extends React.Component {
             }
         }
     }
+    blink;
+    componentWillUnmount() {
+        clearInterval(this.blink);
+    }
     componentDidMount() {
         let message = ["May I ask you for your Full Name?", "May I ask you for your email?", "Please set a password. It should be at least 8 digit long, and contain at least one of each of the following: a special character, an Upper Case Alphabet and a lower case alphabet "]
-        setInterval(() => {
+        this.blink = setInterval(() => {
             this.setState(state => ({ ...state, blink: !state.blink }))
         }, 500)
         let firstInterval = setInterval(() => {
@@ -279,13 +283,13 @@ const styles = StyleSheet.create({
         fontSize: 24
     }
 });
-const mapStateToProps = (state)=>{
-    return({
+const mapStateToProps = (state) => {
+    return ({
 
     })
 }
-const mapDispatchToProps = (dispatch) =>{
-    return({
+const mapDispatchToProps = (dispatch) => {
+    return ({
         register: (details) => register(dispatch, details.user)
     })
 }
