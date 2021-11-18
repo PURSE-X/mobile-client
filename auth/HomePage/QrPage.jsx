@@ -100,7 +100,6 @@ class Profile extends React.Component {
             ...Styles.container, justifyContent: 'space-evenly', alignItems: 'center'
         }}>
             <StatusBar hidden />
-            <Header>QR Code</Header>
             <Modal transparent={true} visible={this.state.open} animationType='slide' >
                 <View style={PageStyles.modalContainer}>
                     <TouchableOpacity style={PageStyles.modalOut} onPress={() => {
