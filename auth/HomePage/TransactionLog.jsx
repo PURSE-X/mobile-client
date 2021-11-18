@@ -10,7 +10,8 @@ import {
     Text,
     TouchableWithoutFeedback,
     TouchableOpacity,
-    FlatList
+    FlatList,
+    ImageBackground
 } from 'react-native';
 import { v4 as uuid } from 'uuid'
 import { connect } from 'react-redux';
@@ -19,6 +20,7 @@ import Header from "./components/header";;
 import { proxy, SignOut, load_user } from "../../redux/actions/auth";
 import TransactionComponent from "./components/TransactionComponent";
 import Styles from './components/style';
+import tree from './assets/tree.png';
 
 
 class Profile extends React.Component {
@@ -66,7 +68,15 @@ class Profile extends React.Component {
     }
 
     render() {
-        return (<><StatusBar hidden />
+
+        
+        
+
+        return (
+        
+            <ImageBackground source={tree} style = {Styles.container}>
+        
+        <><StatusBar hidden />
             <Header>Transactions</Header><View style={{ marginTop: 50, height: Dimensions.get('window').height - 150, flex: 1, flexGrow: 1 }}>
 
                 <Modal transparent={true} visible={this.state.open} animationType='slide' >
@@ -110,7 +120,10 @@ class Profile extends React.Component {
                     } : false : () => { }}
                 />
             </View></>
+
+            </ImageBackground>
         );
+        
     }
 
 
