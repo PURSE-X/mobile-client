@@ -9,7 +9,7 @@ const Header = (props) => {
 
 const Styles = StyleSheet.create({
     container: {
-        width: '100%', position: "absolute", top: 0, zIndex: 5, justifyContent: 'center', alignItems: "center", backgroundColor: "#222222", height: 70
+        width: '90%', position: "absolute", top: 0, zIndex: 5, justifyContent: 'center', alignItems: "center", backgroundColor: "#222222", height: 70
     },
     title: {
         color: "#fff", fontSize: 30

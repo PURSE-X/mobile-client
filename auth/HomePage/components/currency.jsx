@@ -5,7 +5,7 @@ import Styles from './style.jsx';
 function Currency(props) {
   return (
     <TouchableOpacity style={Styles.icon}>
-      <Text style={Styles.iconSymbol}>  $</Text>
+      <Text style={Styles.iconSymbol}>$</Text>
     </TouchableOpacity>
   )
 }

@@ -1,17 +1,16 @@
 import React from "react";
-import { useWindowDimensions, View} from 'react-native';
-import Styles from './components/style';
-import Currency from './components/currency.jsx';
+import { useWindowDimensions, View, ImageBackground} from 'react-native';
 
+import Styles from './components/style';
+
+//import Currency from './components/currency.jsx';
 import Exchange_button from './components/exchange_button.jsx';
-import Navigation_menu from './components/navigation_menu.jsx';
+//import Navigation_menu from './components/navigation_menu.jsx';
 import Number_pad from './components/number_pad.jsx';
 import Exchange from "./components/exchange";
 import InputArea from "./components/inputArea";
 
-import PurseXDesignBlack from './assets/PurseXDesignBlack.png'
 import tree from './assets/tree.png'
-import { ImageBackground } from "react-native";
 
 const Landing_page = () => {
   const [State, setState] = React.useState("100.00")
@@ -20,6 +19,7 @@ const Landing_page = () => {
     return (
 
       <ImageBackground source={tree} style = {Styles.container}> 
+      
       <View style = {Styles.container}>
         
 

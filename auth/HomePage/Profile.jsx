@@ -10,13 +10,17 @@ import {
     StyleSheet,
     Linking,
     ScrollView,
-    TouchableOpacity
+    TouchableOpacity,
+    ImageBackground,
 } from 'react-native';
 import Header from "./components/header";
 import Number_pad from "./components/number_pad";
 import { proxy, SignOut, load_user } from "../../redux/actions/auth";
 import InputArea from './components/inputArea';
 import Styles from './components/style';
+//import BgPic from './components/BgPic.jsx';
+
+import tree from './assets/tree.png';
 
 
 import { connect } from 'react-redux';
@@ -59,7 +63,13 @@ class Profile extends React.Component {
         console.log(this.props.user.profilePicture)
     }
     render() {
-        return (<View style={{
+        return (
+        
+            ///<BgPic style = {Styles.container}/>
+            <ImageBackground source={tree} style = {Styles.container}> 
+
+
+        <View style={{
             ...Styles.container, justifyContent: 'flex-start', alignItems: 'center'
         }}>
             <StatusBar hidden />
@@ -127,6 +137,7 @@ class Profile extends React.Component {
 
             </ScrollView>
         </View >
+        </ImageBackground>
         );
     }
 
@@ -144,54 +155,7 @@ const mapDispatchToProps = (dispatch) => {
     })
 }
 const PageStyles = StyleSheet.create({
-    modalContainer: {
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        height: "100%",
-        margin: 0,
-        color: "#00000090",
-        backgroundColor: '#00000030'
-    },
-    modalHeader: {
-        textAlign: 'center',
-
-        width: '100%',
-        backgroundColor: '#131313',
-        padding: 32,
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-    },
-    modalHeaderTitle: {
-        textAlign: 'center',
-        fontSize: 24,
-        color: '#fff'
-    },
-    modalButtonTitle: {
-        color: "#fff",
-        fontSize: 24,
-    },
-    modalButton: {
-        backgroundColor: "#73AC3B",
-        padding: 20,
-        marginTop: 30,
-        // width: 100,
-        borderRadius: 30,
-        marginBottom: 32
-    },
-    modalOut: {
-        height: Dimensions.get('window').width < 370 ? "5%" : '10%',
-        // backgroundColor: '#00000080',
-        width: '100%'
-    },
-    modalStyle: {
-        alignItems: 'center',
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-        height: Dimensions.get('window').width < 370 ? "95%" : "90%",
-        justifyContent: 'space-between',
-        backgroundColor: "#292929",
-        width: "100%"
-    }
+    
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

@@ -10,7 +10,8 @@ import {
     StyleSheet,
     Linking,
     ScrollView,
-    TouchableOpacity
+    TouchableOpacity,
+    ImageBackground,
 } from 'react-native';
 import { connect } from 'react-redux';
 import axios from "axios";
@@ -22,6 +23,7 @@ import InputArea from './components/inputArea';
 import Styles from './components/style';
 import QRCode from 'react-native-qrcode-svg';
 import logo from '../../assets/PurseX.png';
+import tree from './assets/tree.png';
 
 
 class Profile extends React.Component {
@@ -90,7 +92,11 @@ class Profile extends React.Component {
         }
     }
     render() {
-        return (<View style={{
+        return (
+        
+            <ImageBackground source={tree} style = {Styles.container}> 
+        
+        <View style={{
             ...Styles.container, justifyContent: 'space-evenly', alignItems: 'center'
         }}>
             <StatusBar hidden />
@@ -169,6 +175,9 @@ class Profile extends React.Component {
 
             </View>
         </View>
+
+</ImageBackground>
+
         );
     }
 
