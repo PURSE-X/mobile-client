@@ -18,9 +18,13 @@ class SignIn extends React.Component {
             }
         }
     }
+    blink;
+    componentWillUnmount() {
+        clearInterval(this.blink);
+    }
     componentDidMount() {
         let message = ["May I ask you for your email?", "Please enter your password. "]
-        setInterval(() => {
+        this.blink = setInterval(() => {
             this.setState(state => ({ ...state, blink: !state.blink }))
         }, 500)
         let firstInterval = setInterval(() => {
@@ -112,7 +116,7 @@ class SignIn extends React.Component {
                                         let text = "";
                                         // let fullText = message[2];
                                         // console.log(fullText)
-                                        
+
                                     }}><View style={styles.button}><Text style={styles.font}>Continue</Text></View></TouchableOpacity>
                                 </View>
                                 : null}

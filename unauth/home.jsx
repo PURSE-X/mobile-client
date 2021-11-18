@@ -11,9 +11,13 @@ class Home extends React.Component {
             blink: true
         }
     }
+    componentWillUnmount() {
+        clearInterval(this.blink);
+    }
+    blink;
     componentDidMount() {
         let message = ["Welcome! I am purseX.", "I have been optimized to provide a variety of world-class services.", "Would you like to Sign In or Sign Up?"]
-        setInterval(() => {
+        this.blink = setInterval(() => {
             this.setState(state => ({ ...state, blink: !state.blink }))
         }, 500)
         let msgInterval = setInterval(() => {
