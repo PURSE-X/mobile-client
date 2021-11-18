@@ -13,7 +13,7 @@ import {
     TouchableOpacity,
     ImageBackground,
 } from 'react-native';
-import Header from "./components/header";
+//import Header from "./components/header";
 import Number_pad from "./components/number_pad";
 import { proxy, SignOut, load_user } from "../../redux/actions/auth";
 import InputArea from './components/inputArea';
@@ -68,32 +68,32 @@ class Profile extends React.Component {
     render() {
         return (
         
-            //<BgPic style = {Styles.container}/>
             <ImageBackground source={tree} style = {Styles.container}> 
 
-
         <View style={{
-            ...Styles.container, justifyContent: 'flex-start', alignItems: 'center'
-        }}>
+            ...Styles.container, justifyContent: 'flex-start', alignItems: 'center'}}>
+            
             <StatusBar hidden />
             
             <Modal transparent={true} visible={this.state.funds.opened} animationType='slide' >
+                
                 <View style={Styles.modalContainer}>
+                    
                     <TouchableOpacity style={Styles.modalOut} onPress={() => {
                         this.setState(state => {
                             return ({ ...state, funds: { ...state.funds, opened: false } })
                         })
-                    }} >
-                        <View style={Styles.modalOut}>
-
-                        </View>
+                    }} >    
                     </TouchableOpacity>
+                    
                     <View style={Styles.modalStyle}>
 
                         <View style={Styles.modalHeader}>
                             <Text style={Styles.modalHeaderTitle}>Add Funds</Text>
                         </View>
+                        
                         <InputArea styles={{ marginTop: 15 }} state={this.state.funds.amount.length === 0 ? "0" : this.state.funds.amount} />
+                        
                         <View styles={{ height: 300 }} >
                             <Number_pad other={true} setState={(value) => {
                                 this.setState(state => ({ ...state, funds: { ...state.funds, amount: (state.funds.amount + (value !== '.' ? value : state.funds.amount.includes(value) ? '' : value)) } }))
@@ -106,22 +106,23 @@ class Profile extends React.Component {
                         <TouchableOpacity onPress={this.confirmFunds} style={Styles.modalButton}>
                             <Text style={Styles.modalButtonTitle}>Add Funds</Text>
                         </TouchableOpacity>
+                    
                     </View>
                 </View>
             </Modal>
             
             <ScrollView style={{ width: '100%', height: '100%' }} contentContainerStyle={{ justifyContent: 'flex-start', alignItems: 'center' }} >
                 
-                <View style={{ width: "90%", borderRadius: 20, flexDirection: 'row', padding: 20, backgroundColor: "#202020", alignItems: 'center', marginTop: 100, justifyContent: 'space-between' }}>
+                <View style={{ width: "90%", borderRadius: 20, flexDirection: 'row', padding: 10, backgroundColor: "transparent", alignItems: 'center', marginTop: 10, justifyContent: 'space-between' }}>
                     <Image style={{ width: 80, height: 80, borderRadius: 80 / 2 }} source={{ uri: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" }}></Image>
                     
                     <Text style={{ color: "#fff", fontSize: 25 }}>{this.props.user.name}</Text>
                 </View>
                 
-                <View style={{ borderRadius: 20, width: "90%", padding: 20, backgroundColor: "#202020", alignItems: 'flex-start', marginTop: 50, justifyContent: 'space-between' }}>
+                <View style={{ borderRadius: 20, width: "90%", padding: 20, backgroundColor: "transparent", alignItems: 'flex-start', marginTop: 50, justifyContent: 'space-between' }}>
                     
                     <View style={{ width: '100%', borderBottomWidth: 2, paddingBottom: 12 }}>
-                        <Text style={{ color: "#fff", fontSize: 24 }}>Balance</Text>
+                        <Text style={{ color: "#fff", fontSize: 24, textAlign:'center' }}>Balance</Text>
                     </View>
                     
                     <View style={{ width: '100%', marginTop: 30 }}>
@@ -131,24 +132,14 @@ class Profile extends React.Component {
                     </View>
                     
                     <View style={{ width: '100%', borderRadius: 10, justifyContent: 'center', alignItems: 'center' }}>
-                        <TouchableOpacity onPress={this.addFunds} style={{ borderRadius: 40, marginTop: 30, height: 60, width: 60, backgroundColor: '#73AC3B', alignItems: 'center', justifyContent: 'center' }}>
-                            <Text style={{ color: "#fff", fontSize: 54, textAlign: 'center' }}>+</Text>
+                        <TouchableOpacity onPress={this.addFunds} style={{ borderRadius: 40, marginTop: 30, height: 60, width: 60, backgroundColor: 'transparent', alignItems: 'center', justifyContent: 'center' }}>
+                            <Text style={{ color: "#fff", fontSize: 64, textAlign: 'center' }}>+</Text>
                         </TouchableOpacity>
                     </View>
                 
                 </View>
                 
-                <View style={{ width: "90%", borderRadius: 10, padding: 20, backgroundColor: "#202020", alignItems: 'center', marginTop: 50, flexDirection: 'row', justifyContent: 'center' }}>
-                    <TouchableOpacity style={{ padding: 15, backgroundColor: '#0DB681', borderRadius: 10 }}>
-                        <Text style={{ color: "#fff", fontSize: 24, textAlign: 'center' }}>Withdraw Funds</Text>
-                    </TouchableOpacity>
-                </View>
                 
-                <View style={{ width: "90%", padding: 20, alignItems: 'center', marginTop: 50, flexDirection: 'row', justifyContent: 'flex-end' }}>
-                    <TouchableOpacity onPress={this.props.SignOut} style={{ padding: 15, backgroundColor: '#B6320D', borderRadius: 10 }}>
-                        <Text style={{ color: "#fff", fontSize: 24, textAlign: 'center' }}>Sign Out</Text>
-                    </TouchableOpacity>
-                </View>
 
             </ScrollView>
         
