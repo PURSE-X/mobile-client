@@ -11,7 +11,7 @@ import {
     TouchableOpacity,
     ImageBackground,
 } from 'react-native';
-//import Header from "./components/header";
+import Header from "./components/header";
 import Number_pad from "./components/number_pad";
 import { proxy, SignOut, load_user } from "../../redux/actions/auth";
 import InputArea from './components/inputArea';
@@ -108,7 +108,6 @@ class Profile extends React.Component {
                     </View>
                 </View>
             </Modal>
-            
             <ScrollView style={{ width: '100%', height: '100%' }} contentContainerStyle={{ justifyContent: 'flex-start', alignItems: 'center' }} >
                 
                 <View style={{ width: "90%", borderRadius: 20, flexDirection: 'row', padding: 10, backgroundColor: "transparent", alignItems: 'center', marginTop: 10, justifyContent: 'space-between' }}>
