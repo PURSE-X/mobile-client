@@ -122,7 +122,55 @@ const Styles = StyleSheet.create({
                 alignSelf: "stretch",
                 justifyContent: 'space-between',
                 flexDirection: 'row'
-        }
+        },
+        modalContainer: {
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                height: "100%",
+                margin: 0,
+                color: "#00000090",
+                backgroundColor: '#00000030'
+            },
+            modalHeader: {
+                textAlign: 'center',
+        
+                width: '100%',
+                backgroundColor: '#131313',
+                padding: 32,
+                borderTopLeftRadius: 30,
+                borderTopRightRadius: 30,
+            },
+            modalHeaderTitle: {
+                textAlign: 'center',
+                fontSize: 24,
+                color: '#fff'
+            },
+            modalButtonTitle: {
+                color: "#fff",
+                fontSize: 24,
+            },
+            modalButton: {
+                backgroundColor: "#73AC3B",
+                padding: 20,
+                marginTop: 30,
+                // width: 100,
+                borderRadius: 30,
+                marginBottom: 32
+            },
+            modalOut: {
+                height: Dimensions.get('window').width < 370 ? "5%" : '10%',
+                // backgroundColor: '#00000080',
+                width: '100%'
+            },
+            modalStyle: {
+                alignItems: 'center',
+                borderTopLeftRadius: 30,
+                borderTopRightRadius: 30,
+                height: Dimensions.get('window').width < 370 ? "95%" : "90%",
+                justifyContent: 'space-between',
+                backgroundColor: "#292929",
+                width: "100%"
+            }
 
 });
 
