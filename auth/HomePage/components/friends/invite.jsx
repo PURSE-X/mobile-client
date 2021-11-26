@@ -42,7 +42,7 @@ const Invite = (props) => {
                 </View>
                 <View>
                     <View>
-                        <Text>Showing Results for {state.searchedFor}</Text>
+                        {state.searchedFor.length>0?<Text style={{ color: "#fff", fontSize: 24, textAlign: 'left' }}>Showing Results for {state.searchedFor}</Text>:null}
                     </View>
                     {state.results.length === 0 ? <Text></Text> : <FlatList
                         data={state.results}

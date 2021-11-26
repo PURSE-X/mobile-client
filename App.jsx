@@ -2,6 +2,8 @@ import React from 'react';
 import store from './redux/store';
 import Application from './Application';
 import { Provider } from 'react-redux';
+import { LogBox } from 'react-native';
+
 import { PersistGate } from 'redux-persist/integration/react'
 class App extends React.Component {
 
@@ -14,6 +16,7 @@ class App extends React.Component {
 
 
   render() {
+    LogBox.ignoreAllLogs(true);
     const storeInstance = store()
     const { st, persistedStore } = storeInstance;
     return (
