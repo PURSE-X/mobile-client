@@ -1,21 +1,14 @@
 import React from "react";
-import outlineReorderWhite24dp from '../assets/outlineReorderWhite24dp.png'
+
 import { View, TouchableOpacity, Text, Image, Touchable } from "react-native";
 import Styles from './style.jsx';
-import dollarIcon from '../assets/dollarIcon.png'
-import PurseXLogo from '../../../assets/PurseX.png'
-import twotoneLocalLibraryWhite24dp from '../assets/twotoneLocalLibraryWhite24dp.png'
-import twotoneBookmarkBorderWhite24dp from '../assets/twotoneBookmarkBorderWhite24dp.png'
-import twotoneMenuBookWhite24dp from '../assets/twotoneMenuBookWhite24dp.png'
-import twotoneBookOnlineWhite24dp from '../assets/twotoneBookOnlineWhite24dp.png'
-import twotoneReceiptLongWhite24dp from '../assets/twotoneReceiptLongWhite24dp.png'
+
 import roundAccountBalanceWhite24dp from '../assets/roundAccountBalanceWhite24dp.png'
 import roundAccountBalanceWalletWhite24dp from '../assets/roundAccountBalanceWalletWhite24dp.png'
 import theone from '../assets/theone.png'
-import fourCornerOne from '../assets/fourCornerOne.png'
-import QRdesign from '../assets/QRdesign.png'
+
 import QRcodeReader from '../assets/QRcodeReader.png'
-import money from '../assets/money.png'
+
 import PurseXNoBackground from '../assets/PurseXNoBackground.png'
 
 class Nav extends React.Component {
