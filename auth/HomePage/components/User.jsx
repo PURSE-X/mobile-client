@@ -20,10 +20,11 @@ class User extends React.Component {
 
     }
     render() {
-
+     
         if (!this.state.user) {
             return (<View></View>)
         }
+        
         console.log(this.props)
         return (<TouchableOpacity onPress={() => {
             this.props.setSelected(this.state.user)

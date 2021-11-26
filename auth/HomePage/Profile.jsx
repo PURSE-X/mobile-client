@@ -17,7 +17,7 @@ import Number_pad from "./components/number_pad";
 import { proxy, SignOut, load_user } from "../../redux/actions/auth";
 import InputArea from './components/inputArea';
 import Styles from './components/style';
-
+import Friends from './components/friends';
 
 import { connect } from 'react-redux';
 import axios from "axios";
@@ -33,9 +33,9 @@ class Profile extends React.Component {
             funds: {
                 opened: false,
                 amount: ""
-            }
+            },
+            friends: false
         }
-
     }
     confirmFunds = async () => {
         try {
@@ -44,7 +44,6 @@ class Profile extends React.Component {
                 amount: Math.ceil(Number(this.state.funds.amount))
             })
             Linking.openURL(request.data.url);
-
         }
         catch (err) {
             console.log(err);
@@ -64,6 +63,7 @@ class Profile extends React.Component {
         }}>
             <StatusBar hidden />
             <Header>Profile</Header>
+            <Friends open={this.state.friends} setOpen ={(value)=>this.setState(state=>({...state, friends:value}))}/>
             <Modal transparent={true} visible={this.state.funds.opened} animationType='slide' >
                 <View style={PageStyles.modalContainer}>
                     <TouchableOpacity style={PageStyles.modalOut} onPress={() => {
@@ -94,6 +94,7 @@ class Profile extends React.Component {
                     </View>
                 </View>
             </Modal>
+
             <ScrollView style={{ width: '100%', height: '100%' }} contentContainerStyle={{ justifyContent: 'flex-start', alignItems: 'center' }} >
                 <View style={{ width: "90%", borderRadius: 20, flexDirection: 'row', padding: 20, backgroundColor: "#202020", alignItems: 'center', marginTop: 100, justifyContent: 'space-between' }}>
                     <Image style={{ width: 80, height: 80, borderRadius: 80 / 2 }} source={{ uri: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" }}></Image>
@@ -119,12 +120,17 @@ class Profile extends React.Component {
                         <Text style={{ color: "#fff", fontSize: 24, textAlign: 'center' }}>Withdraw Funds</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={{ width: "90%", padding: 20, alignItems: 'center', marginTop: 50, flexDirection: 'row', justifyContent: 'flex-end' }}>
+                <View style={{ width: "90%", padding: 20, alignItems: 'center', marginTop: 50, flexDirection: 'row', justifyContent: 'space-between' }}>
                     <TouchableOpacity onPress={this.props.SignOut} style={{ padding: 15, backgroundColor: '#B6320D', borderRadius: 10 }}>
                         <Text style={{ color: "#fff", fontSize: 24, textAlign: 'center' }}>Sign Out</Text>
                     </TouchableOpacity>
+                    <TouchableOpacity onPress={() => {
+                        this.setState(state => ({ ...state, friends: true }));
+                    }} style={{ padding: 15, backgroundColor: '#57F885', borderRadius: 10 }}>
+                        <Text style={{ color: "#fff", fontSize: 24, textAlign: 'center' }}>Friends</Text>
+                    </TouchableOpacity>
                 </View>
-
+          
             </ScrollView>
         </View >
         );
