@@ -5,7 +5,7 @@ import {
     LOAD_USER,
     REMOVE_USER
 } from '../definitions';
-export const proxy = "https://7740-106-201-252-84.ngrok.io"
+export const proxy = "https://7e6d-122-168-174-217.ngrok.io"
 
 export const setNotificationsToken = async () => {
     try {

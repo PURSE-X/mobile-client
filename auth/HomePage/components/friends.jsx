@@ -14,6 +14,8 @@ import {
 } from 'react-native';
 import CurrentFriends from './friends/friends';
 import Invite from './friends/invite';
+import Invites from './friends/invites';
+
 class Friends extends React.Component {
     componentDidMount() {
 
@@ -63,7 +65,7 @@ class Friends extends React.Component {
                                 </View>
                             </View>
                         </View>
-                        {this.state.navigation === 1 ? <Invite /> : this.state.navigation === 0 ? <CurrentFriends /> : <View style={{ height: '100%' }}></View>}
+                        {this.state.navigation === 1 ? <Invite /> : this.state.navigation === 0 ? <CurrentFriends /> : <Invites/>}
 
                     </View>
                 </View>

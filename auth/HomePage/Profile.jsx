@@ -18,7 +18,6 @@ import { proxy, SignOut, load_user } from "../../redux/actions/auth";
 import InputArea from './components/inputArea';
 import Styles from './components/style';
 import Friends from './components/friends';
-
 import { connect } from 'react-redux';
 import axios from "axios";
 
