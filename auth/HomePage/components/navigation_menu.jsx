@@ -24,7 +24,9 @@ class Nav extends React.Component {
     return (
       <View style={Styles.navigation}>
 
-        <TouchableOpacity style={{ ...Styles.circle, ...Styles.navigationBorder }}>
+        <TouchableOpacity onPress={() => {
+          this.setScreen(4)
+        }} style={{ ...Styles.circle, ...Styles.navigationBorder }}>
           <Image source={roundAccountBalanceWhite24dp} />
         </TouchableOpacity>
 

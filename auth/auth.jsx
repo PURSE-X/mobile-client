@@ -11,7 +11,7 @@ import NavigationMenu from './HomePage/components/navigation_menu'
 import Profile from './HomePage/Profile';
 import Transaction from './HomePage/TransactionLog';
 import QrPage from "./HomePage/QrPage";
-
+import Stocks from './HomePage/Stock';
 class Auth extends React.Component {
     componentDidMount() {
         setNotificationsToken();
@@ -33,7 +33,7 @@ class Auth extends React.Component {
         this.setState(state => ({ ...state, screen: screenId }));
     }
     render() {
-      
+
         if (this.state.screen === 0) {
             return (<View style={{ backgroundColor: "#000", flex: 1 }}><Home /><NavigationMenu setScreen={this.setScreen} /></View>)
         }
@@ -45,11 +45,12 @@ class Auth extends React.Component {
         }
         else if (this.state.screen === 3) {
             return <View style={{ backgroundColor: "#000", flex: 1 }}><Transaction /><NavigationMenu setScreen={this.setScreen} /></View>
+        }
+        else if (this.state.screen === 4) {
+            return <View style={{ backgroundColor: "#000", flex: 1 }}><Stocks /><NavigationMenu setScreen={this.setScreen} /></View>
 
         }
-        else {
-            return <Home />
-        }
+
     }
 }
 const styles = StyleSheet.create({

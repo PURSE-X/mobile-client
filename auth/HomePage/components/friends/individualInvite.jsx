@@ -13,7 +13,7 @@ class IndividualInvite extends React.Component {
             expanded: false,
             user: {
                 name: ""
-            },
+            }
         }
     }
     async componentDidMount() {
@@ -40,7 +40,6 @@ class IndividualInvite extends React.Component {
         catch (e) {
             alert(e.response.data.error)
         }
-
     }
     reject = async () => {
         try {
@@ -50,7 +49,6 @@ class IndividualInvite extends React.Component {
                     if (a._id.toString() !== this.props.item._id.toString()) {
                         return a;
                     }
-
                 })
             }))
         }
